@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CharacterControllerScript : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     //переменная для установки макс. скорости персонажа
     public float maxSpeed = 10f; 
