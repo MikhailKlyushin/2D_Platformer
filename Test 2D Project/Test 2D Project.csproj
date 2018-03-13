@@ -286,8 +286,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AnimationController.cs" />
-    <Compile Include="Assets\Scripts\GenerationWorld.cs" />
+    <Compile Include="Assets\Scripts\GenerationsBlocks.cs" />
+    <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\Player2DController.cs" />
+    <Compile Include="Assets\Scripts\SceneLoading.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
