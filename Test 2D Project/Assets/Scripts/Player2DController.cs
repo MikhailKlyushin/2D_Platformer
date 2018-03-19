@@ -28,6 +28,28 @@ public class Player2DController : MonoBehaviour
         //AnimContr = GetComponent<AnimationComtroller>();
     }
 
+    //Организация двидения средствами transform с фиксируемой частотой
+    void FixedUpdate()
+    {        
+        transform.Translate(speedX / 100f, 0, 0);   //Движение персонажа с использованием метода transform
+
+        //если нажали клавишу для перемещения вправо, а персонаж направлен влево
+        if (speedX > 0 && !isFacingRight)
+        {
+            //отражаем персонажа вправо
+            Flip();
+            transform.Translate(backPosition, 0, 0);
+        }
+
+        //обратная ситуация, отражаем персонажа влево
+        else if (speedX < 0 && isFacingRight)
+        {
+            Flip();
+            transform.Translate(-backPosition, 0, 0);
+        }
+            
+    }
+
     //движение влево
     public void LeftButtonDown()
     {
@@ -75,28 +97,7 @@ public class Player2DController : MonoBehaviour
     public void AttackEnd()
     {
         animator.SetBool("Attack", false);
-    }
-
-    //Организация двидения средствами transform с фиксируемой частотой
-    void FixedUpdate()
-    {        
-        transform.Translate(speedX / 100f, 0, 0);   //Движение персонажа с использованием метода transform
-
-        //если нажали клавишу для перемещения вправо, а персонаж направлен влево
-        if (speedX > 0 && !isFacingRight)
-        {
-            //отражаем персонажа вправо
-            Flip();
-            transform.Translate(backPosition, 0, 0);
-        }
-        //обратная ситуация. отражаем персонажа влево
-        else if (speedX < 0 && isFacingRight)
-        {
-            Flip();
-            transform.Translate(-backPosition, 0, 0);
-        }
-            
-    }
+    }    
 
     //Метод для смены направления движения персонажа и его зеркального отражения
     private void Flip()
