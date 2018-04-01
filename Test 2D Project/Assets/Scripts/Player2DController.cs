@@ -19,7 +19,7 @@ public class Player2DController : MonoBehaviour
     private Rigidbody2D rb;    
     private Animator animator;  //ссылка на компонент анимаций
     //private AnimationComtroller AnimContr;
-
+    Character character;
     //загружаемые при старте скрипта
     void Start()
     {
@@ -138,4 +138,8 @@ public class Player2DController : MonoBehaviour
         AttackAnimation = false;
     }
 
+    public void Damage()
+    {
+        character.Lives--;
+    }
 }

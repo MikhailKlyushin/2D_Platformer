@@ -285,8 +285,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\FieldView.cs" />
     <Compile Include="Assets\Scripts\GenerationsBlocks.cs" />
+    <Compile Include="Assets\Scripts\LivesBar.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\Player2DController.cs" />
     <Compile Include="Assets\Scripts\SceneLoading.cs" />
