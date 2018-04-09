@@ -1,16 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+/// <summary>
+/// Скрипт управления вывода кол-ва жизней
+/// </summary>
 
 public class LivesBar : MonoBehaviour {
 
     private Transform[] hearts = new Transform[5];
 
-    private Character character;
+    private Player2DController character;
 
     private void Awake()
     {
-       character = FindObjectOfType<Character>();
+        character = FindObjectOfType<Player2DController>();
+
         for (int i = 0; i < hearts.Length; i++)
         {
             hearts[i] = transform.GetChild(i);

@@ -32,10 +32,13 @@ public class ZombieAI : MonoBehaviour
     public float playerPositionX;
     public float enemyPositionX;
 
+    private Player2DController character;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         frontDistance = float.Parse(frontView.transform.localScale.x.ToString());
+        character = FindObjectOfType<Player2DController>();
     }
 
     void Update()
@@ -105,6 +108,7 @@ public class ZombieAI : MonoBehaviour
             speedX = 0;
             animator.SetFloat("Speed", 0);  //Выкл. анимацию бега
             animator.SetBool("Attack", true);
+            character.Damage();
         }
         else
         {
@@ -119,27 +123,5 @@ public class ZombieAI : MonoBehaviour
         Vector3 theScale = transform.localScale;    //получаем размеры персонажа        
         theScale.x *= -1;   //зеркально отражаем персонажа по оси Х        
         transform.localScale = theScale;    //задаем новый размер персонажа, равный старому, но зеркально отраженный       
-    }
-
-    private int lives = 5;
-
-    public int Lives
-    {
-        get { return lives; }
-        set
-        {
-            if (value < 5)
-            {
-                lives = value;
-            }
-            livesBar.Refresh();
-        }
-    }
-
-    private LivesBar livesBar;
-
-    private void Awake()
-    {
-        livesBar = FindObjectOfType<LivesBar>();
     }
 }

@@ -1,13 +1,7 @@
-﻿//using System.Collections;
-//using System.Collections.Generic;
-using UnityEngine;
-
-//[RequireComponent(typeof(AnimationComtroller))] //подключить скрипт PlayMode
+﻿using UnityEngine;
 
 public class Player2DController : MonoBehaviour
-{
-
-    
+{    
     public float maxSpeed = 10f;    //переменная для установки макс. скорости персонажа   
     public float jumpForce = 5f;    //переменная для установки силы прыжка персонажа  
     public float backPosition = 1.2f;   //переменная компенсирования смещения игрока при смене направления движения
@@ -18,17 +12,33 @@ public class Player2DController : MonoBehaviour
 
     private Rigidbody2D rb;    
     private Animator animator;  //ссылка на компонент анимаций
-    //private AnimationComtroller AnimContr;
-    Character character;
+
+    private LivesBar livesBar;
+    public int lives = 5;   //кол-во жизней игрока
+
+    //свойство обновляющее кол-во жизней
+    public int Lives
+    {
+        get { return lives; }
+        set
+        {
+            if (value < 5) lives = value;
+            livesBar.Refresh();
+        }
+    }
+
+    
+
     //загружаемые при старте скрипта
     void Start()
     {
+        livesBar = FindObjectOfType<LivesBar>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        //AnimContr = GetComponent<AnimationComtroller>();
+        
     }
 
-    //Организация двидения средствами transform с фиксируемой частотой
+    //Организация движения средствами transform с фиксируемой частотой
     void FixedUpdate()
     {        
         transform.Translate(speedX / 100f, 0, 0);   //Движение персонажа с использованием метода transform
@@ -93,11 +103,23 @@ public class Player2DController : MonoBehaviour
         }
     }
 
+    //делаем флаг анимации удара активным
+    public void AttackAnimationTrue()
+    {
+        AttackAnimation = true;
+    }
+
+    //делаем флаг анимации удара неактивным
+    public void AttackAnimationFalse()
+    {
+        AttackAnimation = false;
+    }
+
     //завершение удара
     public void AttackEnd()
     {
         animator.SetBool("Attack", false);
-    }    
+    }
 
     //Метод для смены направления движения персонажа и его зеркального отражения
     private void Flip()
@@ -126,20 +148,12 @@ public class Player2DController : MonoBehaviour
         {
             isGrounded = false;
         }
-    }       
-
-    public void AttackAniationTrue()
-    {
-        AttackAnimation = true;
     }
 
-    public void AttackAniationFalse()
-    {
-        AttackAnimation = false;
-    }
-
+    //Нанесение урона игроку
     public void Damage()
     {
-        character.Lives--;
+        Lives--;
     }
+    
 }
