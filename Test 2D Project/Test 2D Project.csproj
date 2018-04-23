@@ -285,13 +285,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\AttackArea.cs" />
+    <Compile Include="Assets\Scripts\EnemyLives.cs" />
     <Compile Include="Assets\Scripts\FieldView.cs" />
-    <Compile Include="Assets\Scripts\GenerationsBlocks.cs" />
     <Compile Include="Assets\Scripts\LivesBar.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\Player2DController.cs" />
     <Compile Include="Assets\Scripts\SceneLoading.cs" />
+    <Compile Include="Assets\Scripts\World\GeneratorWorld.cs" />
+    <Compile Include="Assets\Scripts\World\PerlinNoise.cs" />
     <Compile Include="Assets\Scripts\ZombieAI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

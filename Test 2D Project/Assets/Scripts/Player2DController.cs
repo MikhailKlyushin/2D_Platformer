@@ -15,6 +15,12 @@ public class Player2DController : MonoBehaviour
 
     private LivesBar livesBar;
     public int lives = 5;   //кол-во жизней игрока
+    public int attackDamage = 10;
+
+    public GameObject AttackZone;
+    bool canAttack;
+
+    public ZombieAI Enemy;
 
     //свойство обновляющее кол-во жизней
     public int Lives
@@ -27,20 +33,25 @@ public class Player2DController : MonoBehaviour
         }
     }
 
-    
-
     //загружаемые при старте скрипта
     void Start()
     {
+        //enemyLives = FindObjectOfType<EnemyLives>();
         livesBar = FindObjectOfType<LivesBar>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        
+        Enemy = FindObjectOfType<ZombieAI>();
+    }
+
+    void Update()
+    {
+        canAttack = AttackZone.GetComponent<AttackArea>().OnColisionTrue;
+        Debug.Log(canAttack);
     }
 
     //Организация движения средствами transform с фиксируемой частотой
     void FixedUpdate()
-    {        
+    {
         transform.Translate(speedX / 100f, 0, 0);   //Движение персонажа с использованием метода transform
 
         //если нажали клавишу для перемещения вправо, а персонаж направлен влево
@@ -97,9 +108,19 @@ public class Player2DController : MonoBehaviour
     {
         if (AttackAnimation == false)
         {
+            
             speedX = 0;
             animator.SetFloat("Speed", 0);
             animator.SetBool("Attack", true);
+        }
+    }
+
+    public void DamageEnemy()
+    {
+        if ((canAttack == true) && (AttackAnimation == true))
+        {
+            //enemyLives.EnemyDamage();
+            Enemy.Damage();
         }
     }
 
@@ -151,9 +172,11 @@ public class Player2DController : MonoBehaviour
     }
 
     //Нанесение урона игроку
-    public void Damage()
+    public void Damage(int damageValue)
     {
-        Lives--;
+        Lives -= damageValue;
     }
+
+
     
 }

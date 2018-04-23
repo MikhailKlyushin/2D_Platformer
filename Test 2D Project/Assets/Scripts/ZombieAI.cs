@@ -30,9 +30,25 @@ public class ZombieAI : MonoBehaviour
     bool BackColision;
 
     public float playerPositionX;
-    public float enemyPositionX;
+    public float enemyPositionX;    
 
     private Player2DController character;
+
+    public int lives = 30;
+
+    //свойство обновляющее кол-во жизней
+    public int Lives
+    {
+        get { return lives; }
+        set
+        {
+            if (value <= 30)
+            {
+                lives = value;
+            }
+            
+        }
+    }
 
     void Start()
     {
@@ -50,6 +66,8 @@ public class ZombieAI : MonoBehaviour
         FrontCollisionControl();
         BackCollisionControl();
         Attack();
+        Dead();
+        Debug.Log("LIveEnemy " + Lives);
     }
 
     void FixedUpdate()
@@ -64,8 +82,6 @@ public class ZombieAI : MonoBehaviour
             speedX = 0;
             animator.SetFloat("Speed", 0);  //Выкл. анимацию бега
         }
-
-        Debug.Log(onDistance);
     }
 
     //Метод анализирующий приближение игрока спереди
@@ -108,12 +124,26 @@ public class ZombieAI : MonoBehaviour
             speedX = 0;
             animator.SetFloat("Speed", 0);  //Выкл. анимацию бега
             animator.SetBool("Attack", true);
-            character.Damage();
         }
         else
         {
             animator.SetBool("Attack", false);
         }
+    }
+
+    private void Dead()
+    {
+        if (Lives <= 0)
+        {
+            speedX = 0;
+            animator.SetBool("isDead", true);
+        }
+    }
+
+    //Нанесение урона игроку
+    private void isDamage()
+    {
+        character.Damage(1);
     }
         
     //Метод для смены направления движения персонажа и его зеркального отражения
@@ -123,5 +153,17 @@ public class ZombieAI : MonoBehaviour
         Vector3 theScale = transform.localScale;    //получаем размеры персонажа        
         theScale.x *= -1;   //зеркально отражаем персонажа по оси Х        
         transform.localScale = theScale;    //задаем новый размер персонажа, равный старому, но зеркально отраженный       
+    }
+
+    //Нанесение урона противнику
+    public void Damage()
+    {
+        Lives -= character.attackDamage;
+    }
+
+    //Удаляем из сцены
+    public void EnemyDestroy()
+    {
+        Destroy(enemy);
     }
 }
