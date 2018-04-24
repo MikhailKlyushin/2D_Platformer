@@ -12,15 +12,15 @@ public class GeneratorWorld : MonoBehaviour {
 
     int minX = 0;
     int maxX = 128;
-    int minY = -10;
-    int maxY = 10;    
+    int minY = 0;
+    int maxY = 20;    
 
     PerlinNoise noise;
     GameObject[,] arrayBlocks;
 
     void Start()
     {
-        //arrayBlocks = new GameObject[maxX - minX, maxY - minY];
+        arrayBlocks = new GameObject[maxX - minX, maxY - minY];
         noise = new PerlinNoise(Random.Range(1000000, 10000000));   //кол-во иттераций
         Regenerate();
         //Green1Block();
@@ -41,7 +41,8 @@ public class GeneratorWorld : MonoBehaviour {
             for (int j = minY; j < minY + columnHeight; j++)    //Знвчение высоты колонки (y values)
             {
                 GameObject block = (j == minY + columnHeight - 1) ? grassPrefab : dirtPrefab;
-                Instantiate(block, new Vector2(i * width, j * height), Quaternion.identity);
+                arrayBlocks[i,j] = Instantiate(block, new Vector2(i * width, j * height), Quaternion.identity);
+                Debug.Log(arrayBlocks[i, j]);
             }
         }
     }

@@ -12,7 +12,7 @@ public class ZombieAI : MonoBehaviour
     public bool AttackAnimation;
     float speedX;   //переменная запоминающая направление движения
 
-    //private Rigidbody2D rb;
+    private Rigidbody2D rb;
     private Animator animator;  //ссылка на компонент анимаций
 
     public GameObject player;
@@ -22,6 +22,8 @@ public class ZombieAI : MonoBehaviour
 
     private float frontDistance;
     private float onDistance;
+
+    private SpriteRenderer spriteRenderer;
 
     public float timer;
     public bool yes;
@@ -55,6 +57,7 @@ public class ZombieAI : MonoBehaviour
         animator = GetComponent<Animator>();
         frontDistance = float.Parse(frontView.transform.localScale.x.ToString());
         character = FindObjectOfType<Player2DController>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -141,9 +144,9 @@ public class ZombieAI : MonoBehaviour
     }
 
     //Нанесение урона игроку
-    private void isDamage()
+    private void IsDamage()
     {
-        character.Damage(1);
+        character.DamagePlayer(1);
     }
         
     //Метод для смены направления движения персонажа и его зеркального отражения
@@ -159,6 +162,15 @@ public class ZombieAI : MonoBehaviour
     public void Damage()
     {
         Lives -= character.attackDamage;
+        spriteRenderer.color = Color.red; //Эффект повреждения
+        //rb.AddForce(transform.up * 40f, ForceMode2D.Impulse);
+        Invoke("DamageEffect", 0.3f);
+    }
+
+    //Нейтралтхация эффекта повреждения
+    private void DamageEffect()
+    {
+        spriteRenderer.color = Color.white;
     }
 
     //Удаляем из сцены

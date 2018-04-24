@@ -10,7 +10,7 @@ public class Player2DController : MonoBehaviour
     public bool AttackAnimation;
     float speedX;   //переменная запоминающая направление движения
 
-    private Rigidbody2D rb;    
+    private Rigidbody2D rigidbody2;    
     private Animator animator;  //ссылка на компонент анимаций
 
     private LivesBar livesBar;
@@ -21,6 +21,8 @@ public class Player2DController : MonoBehaviour
     bool canAttack;
 
     public ZombieAI Enemy;
+
+    private SpriteRenderer spriteRenderer;
 
     //свойство обновляющее кол-во жизней
     public int Lives
@@ -37,8 +39,9 @@ public class Player2DController : MonoBehaviour
     void Start()
     {
         //enemyLives = FindObjectOfType<EnemyLives>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         livesBar = FindObjectOfType<LivesBar>();
-        rb = GetComponent<Rigidbody2D>();
+        rigidbody2 = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         Enemy = FindObjectOfType<ZombieAI>();
     }
@@ -90,7 +93,7 @@ public class Player2DController : MonoBehaviour
     {
         if (isGrounded == true)
         {
-            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            rigidbody2.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             animator.SetBool("Jump", true);
         }
     }
@@ -119,7 +122,6 @@ public class Player2DController : MonoBehaviour
     {
         if ((canAttack == true) && (AttackAnimation == true))
         {
-            //enemyLives.EnemyDamage();
             Enemy.Damage();
         }
     }
@@ -172,11 +174,20 @@ public class Player2DController : MonoBehaviour
     }
 
     //Нанесение урона игроку
-    public void Damage(int damageValue)
+    public void DamagePlayer(int damageValue)
     {
         Lives -= damageValue;
+        spriteRenderer.color = Color.red; //Эффект повреждения
+        rigidbody2.AddForce(transform.up * 40f, ForceMode2D.Impulse);
+        //Invoke("OffDamageEffect", 0.3f);
+    }
+
+    //Нейтрализация эффекта повреждения
+    private void OffDamageEffect()
+    {
+       spriteRenderer.color = Color.white;
     }
 
 
-    
+
 }
