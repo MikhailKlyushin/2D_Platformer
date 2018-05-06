@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Скрипт управления вывода кол-ва жизней
-/// </summary>
+/// Скрипт управления вывода кол-ва жизней игрока на экран
+/// </summary> 
 
 public class LivesBar : MonoBehaviour {
 
     private Transform[] hearts = new Transform[5];
 
-    private Player2DController character;
+    private PlayerHp character;
 
     private void Awake()
     {
-        character = FindObjectOfType<Player2DController>();
+        character = FindObjectOfType<PlayerHp>();
 
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -33,5 +33,10 @@ public class LivesBar : MonoBehaviour {
                 hearts[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        Refresh();
     }
 }
