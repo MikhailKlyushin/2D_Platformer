@@ -289,6 +289,9 @@
     <Compile Include="Assets\Scripts\CharacterHp.cs" />
     <Compile Include="Assets\Scripts\CharactersMotor.cs" />
     <Compile Include="Assets\Scripts\FieldView.cs" />
+    <Compile Include="Assets\Scripts\LevelsControl\LevelButtonManager.cs" />
+    <Compile Include="Assets\Scripts\LevelsControl\LevelSettings.cs" />
+    <Compile Include="Assets\Scripts\LevelsControl\LevelStart.cs" />
     <Compile Include="Assets\Scripts\LivesBar.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\MonsterHp.cs" />

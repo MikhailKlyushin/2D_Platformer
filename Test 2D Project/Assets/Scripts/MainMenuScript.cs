@@ -5,10 +5,19 @@ using UnityEngine.SceneManagement;  //Бибилиотека для взаимо
 
 public class MainMenuScript : MonoBehaviour {
 
+    public GameObject levelPanel;
+
     //Кнопка "Начать игру"
     public void OnClickStart()
-    {        
-        SceneManager.LoadScene(1);
+    {
+        //SceneManager.LoadScene(1);
+        levelPanel.SetActive(true);
+    }
+
+    public void ClosePanel()
+    {
+        //SceneManager.LoadScene(1);
+        levelPanel.SetActive(false);
     }
 
     //Кнопка "Выход"
