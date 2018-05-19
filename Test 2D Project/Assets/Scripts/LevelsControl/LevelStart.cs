@@ -13,14 +13,24 @@ public class LevelStart : MonoBehaviour {
     public int numberLevel = 1;
     public int lenghtLevel = 60;
 
-    void Start()
+    public static LevelStart Instance;
+
+    void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        this.InstantiateController();
     }
 
-    void FixedUpdate()
+    private void InstantiateController()
     {
-        Debug.Log("Active");
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (this != Instance)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Запуск игровой сцены

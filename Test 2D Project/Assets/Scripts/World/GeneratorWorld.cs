@@ -28,7 +28,7 @@ public class GeneratorWorld : MonoBehaviour {
     void Start()
     {
         levelStart = FindObjectOfType<LevelStart>();
-        maxX = levelStart.lenghtLevel;
+        //maxX = levelStart.lenghtLevel;
         arrayBlocks = new GameObject[maxX - minX, maxY - minY];
         noise = new PerlinNoise(Random.Range(1000000, 10000000));   //кол-во иттераций
         Regenerate();

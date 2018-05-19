@@ -18,7 +18,7 @@ public class Zombie : MonstersMotor {
     private bool isGrounded;            // находится ли персонаж на земле
     private bool AttackAnimation;
     private float speedX;               // переменная запоминающая направление движения
-    private bool playerIsLive = true;
+    private bool playerIsLive = true;   // монстер должен знать, жив ли игрок
 
     private Rigidbody2D thisRigidbody;
     public Transform thisTransform;
@@ -39,7 +39,8 @@ public class Zombie : MonstersMotor {
     private float playerPositionX;      // позиция игрока по Х
     private float monsterPositionX;     // позиция монстра по Х
 
-    public CharacterHp monsterHp;
+    private CharacterHp monsterHp;
+    public MonsterScope monsterScope;
     public bool monsterIsLive = true;
 
     void Start()
@@ -55,6 +56,7 @@ public class Zombie : MonstersMotor {
         backView = thisTransform.Find("BackFieldView");
         playerScript = FindObjectOfType<Player>();
         monsterHp = GetComponent<CharacterHp>();
+        monsterScope = GetComponent<MonsterScope>();
     }
 
     void Update()
@@ -117,8 +119,7 @@ public class Zombie : MonstersMotor {
         {
             monsterHp.GetDamage(damage);
             DamageEffect(thisSpriteRender, thisRigidbody);     // Эффект получения урона
-            Invoke("DamageOff", timeEffect);    // Выкл. эффекта
-            
+            Invoke("DamageOff", timeEffect);    // Выкл. эффекта            
         }
     }
 
@@ -142,5 +143,6 @@ public class Zombie : MonstersMotor {
     public void CharDestroy()
     {
         Destroy(gameObject);
+        monsterScope.SetScopes();   // Начисляем очки игроку
     }
 }

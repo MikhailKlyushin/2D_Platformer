@@ -16,17 +16,19 @@ public class Player : PlayerMotor {
     public float timeEffect = 0.3f;     // время эффекта повреждения
     private bool isGrounded;            // находится ли персонаж на земле
     private bool AttackAnimation;
-    private float speedX;               //переменная запоминающая направление движения
+    private float speedX;               // переменная запоминающая направление движения
 
     private Rigidbody2D thisRigidbody;
     public Transform thisTransform;
-    private Animator thisAnimator;  //ссылка на компонент анимаций
+    private Animator thisAnimator;
     private SpriteRenderer thisSpriteRender;
 
-    public CharacterHp playerHp;
-    public bool playerIsLive = true;
-    public CharactersMotor charactersMotor;
-    private AttackArea attackArea;
+    public CharacterHp playerHp;            // ссылка на компонент Hp игрока
+    public bool playerIsLive = true;        // показывает жив ли игрок
+    public CharactersMotor charactersMotor; // ссылка на компонент действий игрока
+    private AttackArea attackArea;          // область атаки игрока
+
+    private bool canAttack = false;
 
     void Start()
     {
@@ -48,7 +50,8 @@ public class Player : PlayerMotor {
         Run(thisTransform, speedX);
         playerIsLive = playerHp.CharIsLive();
         thisSpriteRender.color = Color.red;
-        charactersMotor = attackArea.childrelCharMotor;
+        canAttack = attackArea.OnColisionTrue;
+        charactersMotor = attackArea.childrelCharMotor; // получаем компонент монстра если он находится а зоне атаки
     }
         
     public void LeftButtonDown()    // движение влево
@@ -116,7 +119,10 @@ public class Player : PlayerMotor {
     // Нанесение урона монстру, вызывается из анимации
     public override void SetDamage()
     {
-        charactersMotor.GetDamage(attackDamage);
+        if (canAttack) // если враг в зоне атаки
+        {
+            charactersMotor.GetDamage(attackDamage);
+        }
     }
 
     // Получение урона

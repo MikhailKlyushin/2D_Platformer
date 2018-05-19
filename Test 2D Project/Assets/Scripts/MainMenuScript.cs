@@ -7,6 +7,14 @@ public class MainMenuScript : MonoBehaviour {
 
     public GameObject levelPanel;
 
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
     //Кнопка "Начать игру"
     public void OnClickStart()
     {
@@ -25,4 +33,5 @@ public class MainMenuScript : MonoBehaviour {
     {
         Application.Quit();
     }
+
 }
