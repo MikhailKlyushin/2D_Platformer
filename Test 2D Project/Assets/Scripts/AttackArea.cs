@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Область атаки игрока
+/// </summary>
+
 public class AttackArea : MonoBehaviour {
 
     public bool OnColisionTrue = false;

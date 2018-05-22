@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Скрипт области обнаружения игрока, крепится к области монтра
+/// </summary>
+
 public class FieldView : MonoBehaviour {
 
     public bool OnColisionTrue = false;

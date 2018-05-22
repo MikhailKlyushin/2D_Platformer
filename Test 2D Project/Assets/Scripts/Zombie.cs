@@ -63,7 +63,12 @@ public class Zombie : MonstersMotor {
     {
         backColision = backView.GetComponent<FieldView>().OnColisionTrue;
         distanceThePlayer = Vector2.Distance(thisTransform.position, playerTransform.transform.position);
-        isFacingRight = ModelTurn(thisTransform, isFacingRight, backColision, backValue);
+
+        if (monsterIsLive)
+        {
+            isFacingRight = ModelTurn(thisTransform, isFacingRight, backColision, backValue);
+        }
+
         playerPositionX = playerTransform.position.x;
         monsterPositionX = thisTransform.position.x;
         speedX = FrontCollisionControl(playerPositionX, monsterPositionX, isFacingRight, speedX, maxSpeed);
@@ -74,7 +79,7 @@ public class Zombie : MonstersMotor {
     }
 
     void FixedUpdate()
-    {   
+    {
         if ((distanceThePlayer < frontVisibility) && playerIsLive)
         {
             Run(thisTransform, speedX);
@@ -136,6 +141,8 @@ public class Zombie : MonstersMotor {
         {
             speedX = 0;
             thisAnimator.SetBool("Dead", true);
+            Destroy(thisRigidbody);
+            Destroy(GetComponent<BoxCollider2D>());
         }
     }
 

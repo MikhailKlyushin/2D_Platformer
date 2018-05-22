@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Скрипт HP монстра
+/// </summary>
+
 public class MonsterHp : CharacterHp {
 
     public float startHp = 5f;  // Начальное значение здоровья

@@ -19,7 +19,7 @@ public class GeneratorWorld : MonoBehaviour {
     public PerlinNoise noise;
     GameObject[,] arrayBlocks;
 
-    public LevelStart levelStart;
+    public LevelController levelController;
     public GameObject Settings;
 
     private float width = 0.245f;
@@ -27,8 +27,8 @@ public class GeneratorWorld : MonoBehaviour {
 
     void Start()
     {
-        levelStart = FindObjectOfType<LevelStart>();
-        //maxX = levelStart.lenghtLevel;
+        levelController = FindObjectOfType<LevelController>();
+        maxX = (int)levelController.lenghtLevel;
         arrayBlocks = new GameObject[maxX - minX, maxY - minY];
         noise = new PerlinNoise(Random.Range(1000000, 10000000));   //кол-во иттераций
         Regenerate();
@@ -71,6 +71,7 @@ public class GeneratorWorld : MonoBehaviour {
     // Стартовая зона
     private void StartingArea()
     {
+        // Определяем высоту первого блока мира
         int FirstColumnHeight = 0;
         for (int j = minY; j < maxY; j++)    //Значение высоты колонки (y values)
         {
@@ -95,6 +96,7 @@ public class GeneratorWorld : MonoBehaviour {
     // Конечная зона
     private void EndArea()
     {
+        // Определяем высоту последнего блока мира
         int LastColumnHeight = 0;
         for (int j = minY; j < maxY; j++)    //Значение высоты колонки (y values)
         {

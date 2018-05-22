@@ -288,11 +288,12 @@
     <Compile Include="Assets\Scripts\AttackArea.cs" />
     <Compile Include="Assets\Scripts\CharacterHp.cs" />
     <Compile Include="Assets\Scripts\CharactersMotor.cs" />
+    <Compile Include="Assets\Scripts\EndPoint.cs" />
     <Compile Include="Assets\Scripts\FieldView.cs" />
     <Compile Include="Assets\Scripts\GamePause.cs" />
     <Compile Include="Assets\Scripts\LevelsControl\LevelButtonManager.cs" />
+    <Compile Include="Assets\Scripts\LevelsControl\LevelController.cs" />
     <Compile Include="Assets\Scripts\LevelsControl\LevelSettings.cs" />
-    <Compile Include="Assets\Scripts\LevelsControl\LevelStart.cs" />
     <Compile Include="Assets\Scripts\LivesBar.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\MonsterHp.cs" />
@@ -302,7 +303,9 @@
     <Compile Include="Assets\Scripts\PlayerHp.cs" />
     <Compile Include="Assets\Scripts\PlayerMotor.cs" />
     <Compile Include="Assets\Scripts\PlayerScopes.cs" />
+    <Compile Include="Assets\Scripts\SavePoint.cs" />
     <Compile Include="Assets\Scripts\SceneLoading.cs" />
+    <Compile Include="Assets\Scripts\StartPoint.cs" />
     <Compile Include="Assets\Scripts\World\GeneratorWorld.cs" />
     <Compile Include="Assets\Scripts\World\PerlinNoise.cs" />
     <Compile Include="Assets\Scripts\Zombie.cs" />

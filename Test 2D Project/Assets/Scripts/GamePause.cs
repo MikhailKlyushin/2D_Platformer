@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Скрипт игровой паузы
+/// </summary>
+
 public class GamePause : MonoBehaviour {
 
     private bool isPause = false;

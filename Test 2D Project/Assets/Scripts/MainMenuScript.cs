@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;  //Бибилиотека для взаимодействия со сценами
+
+/// <summary>
+/// Скрипт кнопок гланого меню
+/// </summary>
 
 public class MainMenuScript : MonoBehaviour {
 
@@ -18,13 +21,11 @@ public class MainMenuScript : MonoBehaviour {
     //Кнопка "Начать игру"
     public void OnClickStart()
     {
-        //SceneManager.LoadScene(1);
         levelPanel.SetActive(true);
     }
 
     public void ClosePanel()
     {
-        //SceneManager.LoadScene(1);
         levelPanel.SetActive(false);
     }
 

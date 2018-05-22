@@ -43,7 +43,6 @@ public class LevelButtonManager : MonoBehaviour {
             transform.GetChild(i).gameObject.name = (i + 1).ToString();
             transform.GetChild(i).transform.GetChild(0).GetComponent<Text>().text = (i + 1).ToString();
             transform.GetChild(i).GetComponent<LevelSettings>().numberLevel = (i + 1);
-            transform.GetChild(i).GetComponent<LevelSettings>().RefreshLenght();
         }
 	}
 }
