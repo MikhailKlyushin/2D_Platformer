@@ -128,6 +128,12 @@ public class Zombie : MonstersMotor {
         }
     }
 
+    // Начисление очков игроку, вызывается при начале анимации смерти
+    public void SetScope()
+    {
+        monsterScope.SetScopes();   // Начисляем очки игроку
+    }
+
     // Вызываем выключение эффекта, 
     private void DamageOff()
     {
@@ -150,6 +156,5 @@ public class Zombie : MonstersMotor {
     public void CharDestroy()
     {
         Destroy(gameObject);
-        monsterScope.SetScopes();   // Начисляем очки игроку
     }
 }

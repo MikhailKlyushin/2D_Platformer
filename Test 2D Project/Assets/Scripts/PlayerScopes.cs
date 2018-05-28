@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Скрипт кол-ва очков у игрока,
@@ -9,8 +10,22 @@ using UnityEngine;
 
 public class PlayerScopes : MonoBehaviour {
 
-	private int myScopes;
+	private int myScopes;           // Общий счет очков
 
+    public GameObject ScopePanelValue;   // Объект отображающий очки
+    private Text scopeValue;        // Текст со значением
+
+    void Start()
+    {
+        scopeValue = ScopePanelValue.GetComponent<Text>();
+    }
+
+    void FixedUpdate()
+    {
+        scopeValue.text = ScopesFormat(MyScopes);   // Вывод счета в формате
+    }
+
+    // Конструктор
     public int MyScopes
     {
         get { return myScopes; }
@@ -20,13 +35,20 @@ public class PlayerScopes : MonoBehaviour {
         }
     }
 
+    // Добавляем очки к общему счету
     public void AddedScopes(int scopes)
     {
         MyScopes = MyScopes + scopes;
     }
 
-    void FixedUpdate()
+    // Вывод счета в формате "000000"
+    private string ScopesFormat(int value)
     {
-        Debug.Log("MyScopes = " + MyScopes);
+        string scopeString = value.ToString();
+        while (scopeString.Length < 6)
+        {
+            scopeString = "0" + scopeString;
+        }
+        return scopeString;
     }
 }
