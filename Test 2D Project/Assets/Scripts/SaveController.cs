@@ -4,11 +4,15 @@ using UnityEngine;
 using System.IO;
 using System;
 
+/// <summary>
+/// Файл сохранений игры,
+/// крепится к контроллеру сохранений (пустой объект)
+/// </summary>
+
 public class SaveController : MonoBehaviour {
 
     private Save sv = new Save();
     private string path;    // путь к файлу
-    public bool actives;
 
     public static SaveController Instance;
 
@@ -44,8 +48,6 @@ public class SaveController : MonoBehaviour {
         {
             sv = JsonUtility.FromJson<Save>(File.ReadAllText(path));    // загружаем сохранения из файла
             Debug.Log("Сохраненный уровень = " + sv.level);
-            Debug.Log("Активно = " + sv.isSave);
-            actives = sv.isSave;
         }
         else
         {
@@ -64,20 +66,18 @@ public class SaveController : MonoBehaviour {
 
     public void DeleteSave()
     {
-        sv.isSave = false;
-        actives = sv.isSave;
+
     }
 
-    public void SaveNumberLevel(int numberLevel)
+    public void SaveNumberLevel()
     {
-        sv.level = numberLevel;
+        sv.level++;
     }
 
-    public void SavePointActive(bool value)
+    public int GetSaveNumberLevel()
     {
-        sv.isSave = value;
+        return sv.level;
     }
-
 
     // сохранение при закрытии приложения
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -96,5 +96,4 @@ public class SaveController : MonoBehaviour {
 public class Save   //класс хранящий данные
 {
     public int level;
-    public bool isSave;
 }

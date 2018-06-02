@@ -6,9 +6,12 @@ public class StartPoint : MonoBehaviour {
 
     public GameObject player;               // Префаб игрока
     private Transform startPoints;          // Позиция спавна
+    private Transform playerPosition;
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        playerPosition = player.GetComponent<Transform>();
         startPoints = GetComponent<Transform>();
         Spawn();   // Запуска спавнера
     }
@@ -16,7 +19,6 @@ public class StartPoint : MonoBehaviour {
 
     private void Spawn()
     {
-        Instantiate(player, startPoints.position, startPoints.rotation); // Добавляем игрока в сцену
-        Debug.Log("Time.time = " + Time.time);
+        playerPosition.position = startPoints.position;
     }
 }

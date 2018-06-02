@@ -5,20 +5,11 @@ using UnityEngine;
 public class EndPoint : MonoBehaviour {
 
     public GameObject endPanel;
-
-    public Player player;
+    private SaveController saveController;
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
-    }
-
-    private void FixedUpdate()
-    {
-        if (!player.playerIsLive)
-        {
-            endPanel.SetActive(true);
-        }
+        saveController = FindObjectOfType<SaveController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,6 +18,7 @@ public class EndPoint : MonoBehaviour {
         {
             Time.timeScale = 0;
             endPanel.SetActive(true);
+            saveController.SaveNumberLevel();
         }
     }
 }

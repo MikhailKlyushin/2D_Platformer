@@ -288,6 +288,8 @@
     <Compile Include="Assets\Scripts\AttackArea.cs" />
     <Compile Include="Assets\Scripts\CharacterHp.cs" />
     <Compile Include="Assets\Scripts\CharactersMotor.cs" />
+    <Compile Include="Assets\Scripts\DeadBreakage.cs" />
+    <Compile Include="Assets\Scripts\DeadPlayerPanel.cs" />
     <Compile Include="Assets\Scripts\EndPoint.cs" />
     <Compile Include="Assets\Scripts\EndScope.cs" />
     <Compile Include="Assets\Scripts\FieldView.cs" />

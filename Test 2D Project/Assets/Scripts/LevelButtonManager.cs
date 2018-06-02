@@ -13,6 +13,8 @@ public class LevelButtonManager : MonoBehaviour {
     public int countUnlockedLevel = 1;
     public static int numberSavedLevel = 1;
 
+    private SaveController saveController;
+
     [SerializeField]
     Sprite lockedIcon;
 
@@ -26,6 +28,15 @@ public class LevelButtonManager : MonoBehaviour {
     Sprite completeIcon;
 
     void Start () {
+
+        saveController = FindObjectOfType<SaveController>();
+        countUnlockedLevel = saveController.GetSaveNumberLevel();
+
+        if (countUnlockedLevel < 1) // Если сохранений нет
+        {
+            countUnlockedLevel = 1;
+            saveController.SaveNumberLevel();
+        }
 
         for (int i = 0; i < transform.childCount; i++)
         {

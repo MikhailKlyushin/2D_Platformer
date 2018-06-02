@@ -17,10 +17,11 @@ public class GeneratorWorld : MonoBehaviour
     public GameObject leftSurfacePrefab;    // Поверхность слева
     public GameObject rightUpSurfacePrefab; // Угловоя поверхность справа
     public GameObject leftUpSurfacePrefab;  // Угловоя поверхность слева
-    public Transform startPoint;           // Место появления игрока
-    public Transform endPoint;             // Конец уровня
+    public Transform startPoint;            // Место появления игрока
+    public Transform endPoint;              // Конец уровня
     public GameObject enemySpawnPoint;
     public GameObject savePoint;
+    public GameObject deadBreakage;
 
     public int StartingAreaLenght = 1;
     public int EndAreaLenght = 1;
@@ -53,6 +54,7 @@ public class GeneratorWorld : MonoBehaviour
         BreakageGeneration();
         FillingSprites();
         AddSavePoint();
+        DeadBreakage();
     }
 
     // Генератор мира с помощью шума Перлина
@@ -108,7 +110,7 @@ public class GeneratorWorld : MonoBehaviour
                 Instantiate(block, new Vector2(i * -width, j * height), Quaternion.identity);
             }
 
-            if (i == Mathf.Floor(StartingAreaLenght / 2))
+            if (i == Mathf.Floor(StartingAreaLenght / 4))
             {
                 Transform block = startPoint;
                 block.position = new Vector3(i * -width, FirstColumnHeight * height, 0);                
@@ -137,6 +139,11 @@ public class GeneratorWorld : MonoBehaviour
                 GameObject block = (j == minY + LastColumnHeight - 1) ? surfacePrefab : dirtPrefab;
                 Instantiate(block, new Vector2((i + maxX) * width, j * height), Quaternion.identity);
             }
+            if (i == Mathf.Floor(EndAreaLenght / 2))
+            {
+                Transform block = endPoint;
+                block.position = new Vector3((i + maxX) * width, LastColumnHeight * height, 0);
+            }
         }
     }
 
@@ -148,18 +155,34 @@ public class GeneratorWorld : MonoBehaviour
 
         for (int k = 1; k <= numberIneration; k++)
         {
-            int randomValue = Random.Range(8, 16);
-            column += randomValue;
-            int randomPit = Random.Range(2, 4); // Длина разрыва
-            Debug.Log("randomPit = " + randomPit);
-            for (int i = 0; i < randomPit; i++)   //Колонка (x values)
+            int randomLenght = Random.Range(8, 16);  // Длина поверхности между обрывами
+            column += randomLenght;
+            int randomPit = Random.Range(2, 4);     // Длина обрывами
+
+            for (int i = 0; i < randomPit; i++)   // Колонка (x values)
             {
-                for (int j = minY; j < maxY; j++)    //Значение высоты колонки (y values)
+                for (int j = minY; j < maxY; j++)    // Значение высоты колонки (y values)
                 {
                     if (arrayBlocks[i + column, j] != null)
                     {
                         Destroy(arrayBlocks[i + column, j]);
                         arrayBlocks[i + column, j] = null;
+                    }
+                }
+            }
+
+            // Добавляем спавнеры монстров
+            if (k != 1)
+            {
+                int positionEnemySpawnPoint = (int)Mathf.Floor(randomLenght / 2);
+                int p = column - positionEnemySpawnPoint;
+
+                for (int j = minY; j < maxY; j++)    // Значение высоты колонки (y values)
+                {
+                    if ((arrayBlocks[p, j] == null) && (arrayBlocks[p, j - 1] != null))
+                    {                        
+                        GameObject block = enemySpawnPoint;
+                        Instantiate(block, new Vector2(p * width, j * height + 1f), Quaternion.identity);
                     }
                 }
             }
@@ -222,7 +245,22 @@ public class GeneratorWorld : MonoBehaviour
                 {
                     GameObject block = savePoint;
                     Instantiate(block, new Vector2(i * width, j * height - 0.02f), Quaternion.identity);
-                    Debug.Log("i * width, j * height = " + i * width + "; " + j * height);
+                }
+            }
+        }
+    }
+
+    // Область при падении в которую игрок погибает
+    private void DeadBreakage()
+    {
+        for (int i = minX; i < maxX; i++)   //Колонка (x values)
+        {
+            for (int j = minY; j < maxY; j++)    //Значение высоты колонки (y values)
+            {
+                if ((arrayBlocks[i, j] == null) && (j == 4))
+                {
+                    GameObject block = deadBreakage;
+                    Instantiate(block, new Vector2(i * width, j * height), Quaternion.identity);
                 }
             }
         }

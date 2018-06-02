@@ -16,7 +16,8 @@ public class PlayerHp : CharacterHp {
     // Передаем кол-во жизней в др. скрипты
     public float Lives
     {
-        get { return actualHp; }        
+        get { return actualHp; }
+        set { actualHp = value; }
     }
 
     void Start()

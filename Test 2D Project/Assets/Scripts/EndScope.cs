@@ -15,16 +15,20 @@ public class EndScope : MonoBehaviour
     private Text actualScope;
     public GameObject EndScopeValue;    // Итоговое значение
     private Text scopeValue;
+    public GameObject DeadScopeValue;   // Значение после смерти персонажа
+    private Text deadScope;
 
     void Start()
     {
         scopeValue = EndScopeValue.GetComponent<Text>();
         actualScope = ActualScope.GetComponent<Text>();
+        deadScope = DeadScopeValue.GetComponent<Text>();
     }
 
     void FixedUpdate()
     {
+        // Передаем значение в панели
         scopeValue.text = actualScope.text;
-        Debug.Log("actualScope.text = " + actualScope.text);
+        deadScope.text = actualScope.text;
     }
 }

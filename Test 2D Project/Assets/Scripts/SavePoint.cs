@@ -14,19 +14,19 @@ public class SavePoint : MonoBehaviour {
     public bool saveActive = false;
 
     private SpriteRenderer thisSpriteRender;
-    public SaveController saveController;
+    //public SaveController saveController;
 
 	void Start () {
 
         thisSpriteRender = GetComponent<SpriteRenderer>();
-        saveController = FindObjectOfType<SaveController>();
+        //saveController = FindObjectOfType<SaveController>();
 
-        if (saveController.actives)
-        {
-            thisSpriteRender.sprite = saveOn;
-            saveController.SavePointActive(true);
-            saveActive = true;
-        }
+        //if (saveController.actives)
+        //{
+        //    thisSpriteRender.sprite = saveOn;
+        //    saveController.SavePointActive(true);
+        //    saveActive = true;
+        //}
     }
 	
 	// Update is called once per frame
@@ -40,7 +40,7 @@ public class SavePoint : MonoBehaviour {
         {
             thisSpriteRender.sprite = saveOn;
             saveActive = true;
-            saveController.SavePointActive(saveActive);
+            //saveController.SavePointActive(saveActive);
         }
     }
 }

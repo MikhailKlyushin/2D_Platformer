@@ -7,7 +7,7 @@ public class SpawnMonsters : MonoBehaviour {
     public GameObject enemy;                // Префаб монстра
     private Transform spawnPoints;          // Позиция спавна
 
-    void Start()
+    void Awake()
     {
         spawnPoints = GetComponent<Transform>();
         Spawn();   // Запуска спавнера
@@ -16,7 +16,7 @@ public class SpawnMonsters : MonoBehaviour {
 
     private void Spawn()
     {
-        int qtyEnemy = Random.Range(0, 3);  //  кол-во монстров на 1 точке
+        int qtyEnemy = Random.Range(0, 2);  //  кол-во монстров на 1 точке
         
         for (int i = 0; i <= qtyEnemy; i++)
         {
