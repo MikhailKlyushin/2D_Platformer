@@ -151,11 +151,11 @@ public class Zombie : MonstersMotor {
         if (!monsterIsLive)
         {
             speedX = 0;
-            thisAnimator.SetBool("Dead", true);
             positionX = thisRigidbody.position.x;
-            positionY = thisRigidbody.position.y;
+            positionY = thisRigidbody.position.y;           
             Destroy(thisRigidbody);
             Destroy(GetComponent<BoxCollider2D>());
+            thisAnimator.SetBool("Dead", true);
         }
     }
 

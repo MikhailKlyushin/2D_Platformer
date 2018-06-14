@@ -312,9 +312,9 @@
     <Compile Include="Assets\Scripts\PlayerMotor.cs" />
     <Compile Include="Assets\Scripts\PlayerScopes.cs" />
     <Compile Include="Assets\Scripts\SaveController.cs" />
-    <Compile Include="Assets\Scripts\SaveData.cs" />
     <Compile Include="Assets\Scripts\SavePoint.cs" />
     <Compile Include="Assets\Scripts\SceneLoading.cs" />
+    <Compile Include="Assets\Scripts\SkillsController.cs" />
     <Compile Include="Assets\Scripts\SpawnMonsters.cs" />
     <Compile Include="Assets\Scripts\StartPoint.cs" />
     <Compile Include="Assets\Scripts\Zombie.cs" />

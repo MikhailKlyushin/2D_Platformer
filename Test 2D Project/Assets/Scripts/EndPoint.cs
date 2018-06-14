@@ -6,10 +6,12 @@ public class EndPoint : MonoBehaviour {
 
     public GameObject endPanel;
     private SaveController saveController;
+    private PlayerScopes playerScopes;
 
     private void Start()
     {
         saveController = FindObjectOfType<SaveController>();
+        playerScopes = FindObjectOfType<PlayerScopes>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,7 +20,9 @@ public class EndPoint : MonoBehaviour {
         {
             Time.timeScale = 0;
             endPanel.SetActive(true);
-            saveController.SaveLevel();   // Разблокировка следующего уровня
+            saveController.sv.level++;   // Разблокировка следующего уровня
+            saveController.sv.scopes += playerScopes.MyScopes;
+            Debug.Log("playerScopes.MyScopes = " + playerScopes.MyScopes);
         }
     }
 }

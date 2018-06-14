@@ -270,6 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96254f78b47f4144fbc4bbc7bc2a60cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oneHeal: {fileID: 1571962329737624, guid: cd4bcebc6decf8c44bc594c43ed67161, type: 2}
+  twoHeal: {fileID: 1491008117015194, guid: fafb2cf276abcdf4eb192149d0b93879, type: 2}
+  fiveHeal: {fileID: 1710095387257378, guid: e7102f640d30fc44e8204e3ca6d1d343, type: 2}
 --- !u!114 &114298161195121204
 MonoBehaviour:
   m_ObjectHideFlags: 1

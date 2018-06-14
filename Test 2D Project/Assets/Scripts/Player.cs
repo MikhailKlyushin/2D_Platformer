@@ -30,6 +30,8 @@ public class Player : PlayerMotor {
 
     private bool canAttack = false;
 
+    private SaveController saveController;  // Сохраненные параметры
+
     void Start()
     {
         thisSpriteRender = GetComponent<SpriteRenderer>();
@@ -38,6 +40,11 @@ public class Player : PlayerMotor {
         thisAnimator = GetComponent<Animator>();
         playerHp = GetComponent<CharacterHp>();
         attackArea = FindObjectOfType<AttackArea>();
+        saveController = FindObjectOfType<SaveController>();
+
+        maxSpeed = saveController.sv.speedPlayer;
+        jumpForce = saveController.sv.jumpForcePlayer;
+        attackDamage = saveController.sv.attackDamagePlayer;
     }
 
     void Update()

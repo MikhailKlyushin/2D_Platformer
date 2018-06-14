@@ -1822,24 +1822,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114278420606871554, guid: 00c4420a5095d094a80041a17f20a810,
-        type: 2}
-      propertyPath: oneHeal
-      value: 
-      objectReference: {fileID: 1571962329737624, guid: cd4bcebc6decf8c44bc594c43ed67161,
-        type: 2}
-    - target: {fileID: 114278420606871554, guid: 00c4420a5095d094a80041a17f20a810,
-        type: 2}
-      propertyPath: twoHeal
-      value: 
-      objectReference: {fileID: 1491008117015194, guid: fafb2cf276abcdf4eb192149d0b93879,
-        type: 2}
-    - target: {fileID: 114278420606871554, guid: 00c4420a5095d094a80041a17f20a810,
-        type: 2}
-      propertyPath: fiveHeal
-      value: 
-      objectReference: {fileID: 1710095387257378, guid: e7102f640d30fc44e8204e3ca6d1d343,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00c4420a5095d094a80041a17f20a810, type: 2}
   m_IsPrefabParent: 0
@@ -3711,6 +3693,11 @@ Prefab:
         type: 2}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114379819351599868, guid: 0f9aacc6eb69ca44d9fb7cc6ce1e51aa,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f9aacc6eb69ca44d9fb7cc6ce1e51aa, type: 2}

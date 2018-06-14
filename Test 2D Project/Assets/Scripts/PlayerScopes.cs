@@ -17,6 +17,7 @@ public class PlayerScopes : MonoBehaviour {
 
     void Start()
     {
+        myScopes = 0;
         scopeValue = ScopePanelValue.GetComponent<Text>();
     }
 

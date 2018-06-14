@@ -31,12 +31,12 @@ public class LevelButtonManager : MonoBehaviour {
        saveController = FindObjectOfType<SaveController>();
 
 
-        countUnlockedLevel = saveController.GetLevel();
+        countUnlockedLevel = saveController.sv.level;
 
         if (countUnlockedLevel < 1) // Если сохранений нет
         {
             countUnlockedLevel = 1;
-            saveController.SaveLevel();   // Стартовое сохранение
+            saveController.sv.level++;   // Стартовое сохранение (значение 1)
         }
 
         for (int i = 0; i < transform.childCount; i++)

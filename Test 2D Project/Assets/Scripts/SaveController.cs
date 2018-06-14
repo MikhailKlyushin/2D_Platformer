@@ -11,7 +11,7 @@ using System;
 
 public class SaveController : MonoBehaviour
 {
-    private Save sv = new Save();
+    public Save sv = new Save();
     private string path;    // путь к файлу
 
     public static SaveController Instance;
@@ -48,6 +48,7 @@ public class SaveController : MonoBehaviour
         {
             sv = JsonUtility.FromJson<Save>(File.ReadAllText(path));    // загружаем сохранения из файла
             Debug.Log("Сохраненный уровень = " + sv.level);
+            Debug.Log("Сохраненный счет = " + sv.scopes);
         }
         else
         {
@@ -58,25 +59,16 @@ public class SaveController : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            DeleteSave();
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    DeleteSave();
+        //}
     }
 
-    public void DeleteSave()
+    // Запись переменных в файл
+    public void SaveAll()
     {
-
-    }
-
-    public void SaveLevel()
-    {
-        sv.level++;
-    }
-
-    public int GetLevel()
-    {
-        return sv.level;
+        File.WriteAllText(path, JsonUtility.ToJson(sv));
     }
 
     // сохранение при закрытии приложения
@@ -88,7 +80,7 @@ public class SaveController : MonoBehaviour
 #endif
     private void OnApplicationQuit()
     {
-        File.WriteAllText(path, JsonUtility.ToJson(sv));
+        SaveAll();
     }
 }
 
@@ -96,4 +88,9 @@ public class SaveController : MonoBehaviour
 public class Save   //класс хранящий данные
 {
     public int level;
+    public int scopes;
+    public float speedPlayer;
+    public float jumpForcePlayer;
+    public float attackDamagePlayer;
+    public float countLivesPlayer;
 }
